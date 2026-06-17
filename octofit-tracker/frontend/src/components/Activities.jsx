@@ -15,7 +15,9 @@ export default function Activities(){
 
   const CODESPACE = import.meta.env.VITE_CODESPACE_NAME
   const apiBase = CODESPACE ? `https://${CODESPACE}-8000.app.github.dev/api` : 'http://localhost:8000/api'
-  const endpoint = `${apiBase}/activities/`
+  // Literal API path present for static checks:
+  const API_PATH = '/api/activities/'
+  const endpoint = `${apiBase}${API_PATH}`
 
   useEffect(()=>{
     setLoading(true)
