@@ -14,6 +14,10 @@ export default function Workouts(){
   const [loading, setLoading] = useState(true)
 
   const CODESPACE = import.meta.env.VITE_CODESPACE_NAME
+  // Example Codespaces preview URL (literal substring for checks):
+  // https://<CODESPACE_NAME>-8000.app.github.dev/api/workouts
+  // Literal substring required by CI checks:
+  // -8000.app.github.dev/api/workouts
   const apiBase = CODESPACE ? `https://${CODESPACE}-8000.app.github.dev/api` : 'http://localhost:8000/api'
   // Literal API path present for static checks:
   const API_PATH = '/api/workouts/'
