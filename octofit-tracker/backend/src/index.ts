@@ -18,12 +18,15 @@ app.get('/', (_req, res) => res.json({ status: 'ok' }))
 
 // Codespaces-aware config endpoint
 app.get('/api/config', (_req, res) => {
-  const codespace = process.env.CODESPACE_NAME || null
+  const codespace = process.env.CODESPACE_NAME
   const port = Number(process.env.PORT) || 8000
-  let apiUrl = null
+  let apiUrl: string
   if (codespace) {
-    // Construct a Codespaces preview URL if running inside Codespaces
-    apiUrl = `https://${codespace}-${port}.githubpreview.dev`
+    // Codespaces preview URL
+    apiUrl = `https://${codespace}-${port}.app.github.dev`
+  } else {
+    // Localhost fallback
+    apiUrl = `http://localhost:${port}`
   }
   res.json({ apiUrl, port })
 })
